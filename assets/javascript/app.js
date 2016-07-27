@@ -164,7 +164,7 @@ $(document).ready(function() {
         displayAnswer: function() {
             $('#question').html("The correct answer was " + trivia[choice].correct);
             var picture = $('<img>')
-                .addClass('img-responsive image center-block')
+                .addClass('img-rounded image center-block')
                 .attr('src', 'assets/images/' + trivia[choice].image);
             $('#answer').html(picture);
             display = setTimeout(game.nextQuestion, 2700);
