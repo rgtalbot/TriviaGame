@@ -3,68 +3,58 @@ $(document).ready(function() {
     var time = 30;
     var correct = 0;
     var incorrect = 0;
+    var count = 0;
+    var pick = 0;
     var timer;
     var choice;
-    var dispayQuestion;
+    var display;
 
-
-    $('#timer').hide();
-    $('#question').hide();
-    $('#answer').hide();
-
-
-    $('#start').click(function(){
+    $('#start').click(function() {
         game.new();
     });
 
-
-        //2. push start button and question, answer choices, and timer pop up
-
-
-
-
-    //4. highlight answer choices on hover and make them clickable
-    //5. compare click to correct answer
-    //6. show correct answer and gif on a setTimeout
-    //7. after timeout, pop up next question
-    //8. make sure to log correct and incorrect guesses for final display.
     //9. show stats at the end and give them an option to start over.
 
-    var trivia = {
-        0: {
-            question: "What is the answer?",
-            choices: ["not this", "not this", "not this", "this"],
-            answer: 3,
-        },
-        1: {
-            question: "What is the answer?",
-            choices: ["not this", "not this", "not this", "this"],
-            answer: 3,
-        },
-        2: {
-            question: "What is the answer?",
-            choices: ["not this", "not this", "not this", "this"],
-            answer: 3,
-        },
-        3: {
-            question: "What is the answer?",
-            choices: ["not this", "not this", "not this", "this"],
-            answer: 3,
-        },
-        4: {
-            question: "What is the answer?",
-            choices: ["not this", "not this", "not this", "this"],
-            answer: 3,
-        },
-    };
+    var trivia = [{
+        question: "What is the answer?",
+        choices: ["not this0", "not this", "not this", "this"],
+        answer: 3,
+        correct: "this",
+        image: 'test.gif',
+    }, {
+        question: "What is the answer?",
+        choices: ["not this1", "not this", "not this", "this"],
+        answer: 3,
+        correct: "this",
+        image: 'test.gif',
+    }, {
+        question: "What is the answer?",
+        choices: ["not this2", "not this", "not this", "this"],
+        answer: 3,
+        correct: "this",
+        image: 'test.gif',
+    }, {
+        question: "What is the answer?",
+        choices: ["not this3", "not this", "not this", "this"],
+        answer: 3,
+        correct: "this",
+        image: 'test.gif',
+    }, {
+        question: "What is the answer?",
+        choices: ["not this4", "not this", "not this", "this"],
+        answer: 3,
+        correct: "this",
+        image: 'test.gif',
+    }, ];
+    console.log(trivia.length);
+
 
 
     var game = {
         new: function() {
-            $('#timer').show();
-            $('#question').show();
-            $('#answer').show();
             $('#start').hide();
+            $('#timer').show();
+            game.timerReset();
             timer = setInterval(game.countdown, 500);
             game.data();
         },
@@ -75,32 +65,43 @@ $(document).ready(function() {
                 $('#timer').html(time + " seconds");
             } else {
                 clearInterval(timer);
-                alert('working');
+                game.incorrect();
             }
         },
 
         timerReset: function() {
+            time = 30;
             $('#timer').html(time + " seconds");
         },
 
         check: function() {
             if ($(this).attr('data-id') == trivia[choice].answer) {
-                correct++;
-                console.log("correct", correct);
-                // go to answer
-                // set timeout and go on to next question
+                game.correct();
             } else {
-                incorrect++;
-                console.log("incorrect", incorrect);
-                // go to answer
-                // set timeout and go on to next question
+                game.incorrect();
             }
         },
 
+        correct: function() {
+            correct++;
+            clearInterval(timer);
+            $('#timer').hide();
+            console.log("correct", correct);
+            game.displayAnswer();
+        },
+
+        incorrect: function() {
+            incorrect++;
+            clearInterval(timer);
+            $('#timer').hide();
+            console.log("incorrect", incorrect);
+            game.displayAnswer();
+        },
+
         data: function() {
-            choice = Math.floor(Math.random() * 5);
-            console.log(choice);
-            displayQuestion = trivia[choice].question;
+            choice = pick;
+            pick++;
+            count++;
             $('#question').html(question);
             $.each(trivia[choice].choices, function(index, value) {
                 var answer = $('<p>')
@@ -110,9 +111,56 @@ $(document).ready(function() {
                     .on('click', game.check);
                 $('#answer').append(answer);
             });
+        },
+
+        displayAnswer: function() {
+            $('#question').html("The correct answer was " + trivia[choice].correct);
+            var picture = $('<img>')
+                .addClass('img-responsive')
+                .attr('src', 'assets/images/' + trivia[choice].image);
+            $('#answer').html(picture);
+            display = setTimeout(game.nextQuestion, 1000);
+        },
+
+        nextQuestion: function() {
+            if (count !== trivia.length) {
+                time = 30;
+                $('#answer').empty();
+                game.new();
+            } else {
+                game.endGame();
+            }
+        },
+
+        endGame: function() {
+            clearInterval(timer);
+            $('#timer').hide();
+            $('#question').html('GAME OVER');
+            $('#answer').html("Number of correct answers: " + correct + "<br>Number of incorrect answers: " + incorrect);
+            var reset = $("<button>")
+                    .addClass('btn btn primary')
+                    .html('Play Again?')
+                    .attr('id', 'reset');
+            $('#reset').html(reset);
+        },
+
+        reset: function() {
+            timer=30;
+            var time = 30;
+            var correct = 0;
+            var incorrect = 0;
+            var count = 0;
+            var pick = 0;
+            var timer;
+            var choice;
+            var display;
+            $('#timer').empty();
+            $('#question').empty();
+            $('#answer').empty();
+            game.new();
         }
     };
+    // $('#reset').on('click', game.reset);
 
-    game.timerReset();
 
 });
