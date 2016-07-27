@@ -13,72 +13,66 @@ $(document).ready(function() {
     });
 
     var trivia = [{
-        question: "In <i>The Secret World of Alex Mack</i>, what's the name of Alex' Sister?",
-        choices: ["Beth", "Diana", "Annie", "Kelly"],
-        answer: 2,
-        correct: "Annie",
-        image: 'alexMack.gif',
-    }, {
-        question: "The fictional city where <i>Hey Arnold!</i> is set is called:",
-        choices: ["Hillwood", "Hill Valley", "Pleasantville", "Radiator Springs"],
-        answer: 0,
-        correct: "Hillwood",
-        image: 'arnold.gif',
-    }, {
-        question: "How many seasons did <i>The Wild Thornberrys</i> have?",
-        choices: ["1", "3", "4", "5"],
-        answer: 3,
-        correct: "5",
-        image: 'thornberry.png',
-    }, {
-        question: "What type of animal is Rocko from <i>Rocko's Modern Life</i>?",
-        choices: ["Dog", "Wallaby", "Kangaroo", "Bear"],
+        question: "How did Daenerys Targaryen eventually hatch her dragon eggs?",
+        choices: ["In a lightning storm", "In a funeral pyre", "In a fireplace", "In a frozen cave"],
         answer: 1,
-        correct: "Wallaby",
-        image: 'rocko.gif',
+        correct: "In a funeral pyre",
+        image: 'one.gif',
     }, {
-        question: "What year id <i>Clarissa Explains It All</i> start airing?",
-        choices: ["1991", "1992", "1993", "1994"],
+        question: "How many times has Beric Dondarrion been brough back to life?",
+        choices: ["Three", "Five", "Six", "Seven"],
+        answer: 2,
+        correct: "Six",
+        image: 'two.gif',
+    }, {
+        question: "Besides dragonglass, what is the only other substance capable of defeating White Walkers?",
+        choices: ["Weirwood", "Wildfire", "Valyrian Steel", "Snowballs"],
+        answer: 2,
+        correct: "Valyrian Steel",
+        image: 'three.gif',
+    }, {
+        question: "What is the only thing that can put out volatile Wildfire?",
+        choices: ["Sand", "Water", "Dragon's Blood", "Sunlight"],
         answer: 0,
-        correct: "1991",
-        image: 'clarissa.gif',
+        correct: "Sand",
+        image: 'four.gif',
     }, {
-        question: "Ryan Gosling appeard on this Nick show in 1995:",
-        choices: ["<i>All That</i>", "<i>The Adventures of Pete and Pete</i>", "<i>Are You Afraid of the Dark?</i>", "<i>The Secret World of Alex Mack</i>"],
-        answer: 2,
-        correct: "<i>Are You Afraid of the Dark?</i>",
-        image: 'dark.gif',
-    }, {
-        question: "What was the name of Doug's dog on <i>Doug</i>?",
-        choices: ["Doug Jr.", "Skeeter", "Stinky", "Porkchop"],
-        answer: 3,
-        correct: "Porkchop",
-        image: 'doug.gif',
-    }, {
-        question: "How many teams competed in each game on <i>Legends of the Hidden Temple</i>?",
-        choices: ["2", "4", "6", "8"],
-        answer: 2,
-        correct: "6",
-        image: 'temple.gif',
-    }, {
-        question: "How do Tommy and Angelica know each other on <i>Rugrats</i>?",
-        choices: ["They are neighbors", "They are family friends", "They are brother and sister", "They are cousins"],
-        answer: 3,
-        correct: "They are cousins",
-        image: 'rugrats.gif',
-    }, {
-        question: "The show <i>Kenan & Kel</i> took place in:",
-        choices: ["New York City", "Chicago", "Los Angeles", "Miami"],
+        question: "Which Starnk famil direwolf was killed in retaliation for an attack on Prince Joffrey?",
+        choices: ["Ghost", "Lady", "Nymeria", "Summer"],
         answer: 1,
-        correct: "Chicago",
-        image: 'kenan.gif',
+        correct: "Lady",
+        image: 'five.gif',
     }, {
-        question: "What was the name of the burger place on <i>All That</i>?",
-        choices: ["In-N-Out Burger", "Sweet Burger", "Good Burger", "Amazing Burger"],
+        question: "Arya's punishment for stealing from the Many-Face God is:",
+        choices: ["Death", "Memory Loss", "Blindness", "Uncontrollable Laughter"],
         answer: 2,
-        correct: "Good Burger",
-        image: 'allthat.gif',
-    },
+        correct: "Blindness",
+        image: 'six.gif',
+    }, {
+        question: "'It's nothing' were the last words of this infamous character:",
+        choices: ["Renly Baratheon", "Tywin Lannister", "Robb Stark", "King Joffrey"],
+        answer: 3,
+        correct: "King Joffrey",
+        image: 'seven.gif',
+    }, {
+        question: "The name of King Tommen's favorite cat is:",
+        choices: ["Battle Pus", "Little Lion", "Ser Pounce", "Prince Fuzzy"],
+        answer: 2,
+        correct: "Ser Pounce",
+        image: 'eight.gif',
+    }, {
+        question: "What was the name of Ned Stark's greatsword?",
+        choices: ["Ice", "Oathkeeper", "Widow's Wail", "Northguard"],
+        answer: 0,
+        correct: "Ice",
+        image: 'nine.jpg',
+    }, {
+        question: "Prince Oberyn Martell is nicknamed the 'Red Viper' because of his combat and:",
+        choices: ["Pride in drawing first blood", "Knowledge of poisons", "Nighttime attacks", "Ruby-colored armor"],
+        answer: 1,
+        correct: "Knowledge of poisons",
+        image: 'ten.gif',
+    }
 ];
 
     var game = {
@@ -93,7 +87,7 @@ $(document).ready(function() {
         countdown: function() {
             if (time > 0) {
                 time--;
-                $('#timer').html(time + " seconds");
+                $('#timer').html(time);
             } else {
                 clearInterval(timer);
                 game.incorrect();
@@ -102,7 +96,7 @@ $(document).ready(function() {
 
         timerReset: function() {
             time = 30;
-            $('#timer').html(time + " seconds");
+            $('#timer').html(time);
         },
 
         check: function() {

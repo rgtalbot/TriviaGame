@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Nickelodeon";
-    src: url(../font/nickelodeon.ttf) format("truetype");
+    font-family: "got";
+    src: url(../font/gameofthrones.ttf) format("truetype");
 }
 
 @font-face {
@@ -14,21 +14,20 @@
   height: 320px;
   font-size: 24px;
   font-family: monospace;
-  background-color: white;
 }
 
 .gameButton {
-  background-color: blue;
-  color: #ff5dce;
-  font-family: "retro";
+  background-color: black;
+  color: white;
+  font-family: "got";
   font-size: 50px;
   margin: 20px auto;
 }
 
 .gameButton:hover {
   text-decoration: none;
-  background-color: #ff5dce;
-  color: blue;
+  background-color: white;
+  color: black;
 }
 
 body {
@@ -40,9 +39,9 @@ body {
 }
 
 h1 {
-  font-family: "retro";
-  font-size: 90px;
-  color: blue;
+  font-family: "got";
+  font-size: 70px;
+  color: black;
   margin: 30px auto;
 }
 
@@ -55,23 +54,20 @@ h1 {
 }
 
 #timer {
-  font-size: 16px;
-  color: orange;
-}
-
-.nick {
-  font-family: "Nickelodeon";
-  font-size: 90px;
-  color: orange;
+  font-size: 36px;
+  color: black;
+  font-weight: bold;
+  font-family: "got";
 }
 
 .choice {
-  background-color: #ff5dce;
-  color: blue;
+  background-color: black;
+  color: white;
   font-size: 24px;
   font-family: monospace;
   width: 400px;
   margin: 10px auto;
+  border-radius: 5px;
 }
 
 #answer {
@@ -85,7 +81,7 @@ h1 {
 }
 
 .choice:hover {
-  color: #ff5dce;
-  background-color: blue;
-  border: 3px solid #ff5dce;
+  color: black;
+  background-color: white;
+  border: 3px solid black;
 }
