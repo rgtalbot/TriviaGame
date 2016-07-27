@@ -3,17 +3,14 @@
     src: url(../font/gameofthrones.ttf) format("truetype");
 }
 
-@font-face {
-    font-family: "retro";
-    src: url(../font/retro.ttf) format("truetype");
-}
+@import url(https://fonts.googleapis.com/css?family=Carrois+Gothic+SC);
 
 .game {
   max-width: 750px;
   margin: 0 auto;
   height: 320px;
   font-size: 24px;
-  font-family: monospace;
+  font-family: 'Carrois Gothic SC', sans-serif;
 }
 
 .gameButton {
@@ -64,7 +61,7 @@ h1 {
   background-color: black;
   color: white;
   font-size: 24px;
-  font-family: monospace;
+  font-family: 'Carrois Gothic SC', sans-serif;
   width: 400px;
   margin: 10px auto;
   border-radius: 5px;

@@ -167,7 +167,7 @@ $(document).ready(function() {
                 .addClass('img-responsive image center-block')
                 .attr('src', 'assets/images/' + trivia[choice].image);
             $('#answer').html(picture);
-            display = setTimeout(game.nextQuestion, 3000);
+            display = setTimeout(game.nextQuestion, 2700);
         },
 
         nextQuestion: function() {
