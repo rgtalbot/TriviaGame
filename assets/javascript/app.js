@@ -8,11 +8,13 @@ $(document).ready(function() {
     var choice;
     var display;
 
+    //click to start game
     $('#start').click(function() {
         game.new();
         playAudio();
     });
 
+    //array of all the question and answer objects
     var trivia = [{
         question: "How did Daenerys Targaryen eventually hatch her dragon eggs?",
         choices: ["In a lightning storm", "In a funeral pyre", "In a fireplace", "In a frozen cave"],
@@ -97,9 +99,9 @@ $(document).ready(function() {
         answer: 0,
         correct: "Hear Me Roar",
         image: 'fourteen.gif',
-    }
-];
+    }];
 
+    //object of all the functions that make the game run
     var game = {
         new: function() {
             $('#start').hide();
@@ -214,7 +216,9 @@ $(document).ready(function() {
         playAudio();
     });
 
+    //audio functions
     var audio = new Audio();
+
     function playAudio() {
         audio.src = "assets/sounds/theme.mp3";
         audio.play();
