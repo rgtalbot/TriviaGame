@@ -37,7 +37,7 @@ $(document).ready(function() {
         correct: "Sand",
         image: 'four.gif',
     }, {
-        question: "Which Starnk famil direwolf was killed in retaliation for an attack on Prince Joffrey?",
+        question: "Which Stark family direwolf was killed in retaliation for an attack on Prince Joffrey?",
         choices: ["Ghost", "Lady", "Nymeria", "Summer"],
         answer: 1,
         correct: "Lady",
