@@ -179,6 +179,7 @@ $(document).ready(function() {
             $('#timer').empty();
             $('#question').empty();
             $('#answer').empty();
+            $('#reset').empty();
             game.new();
         }
     };
