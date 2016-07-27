@@ -72,6 +72,30 @@ $(document).ready(function() {
         answer: 1,
         correct: "Knowledge of poisons",
         image: 'ten.gif',
+    }, {
+        question: "Which of the following did Tyrion Lannister NOT say?",
+        choices: ["I may be the Imp. But I'm no jackass", "Oh, did I kill him too? I've been a very busy man", "It's not slander if it's true", "It's not easy being drunk all the time. If it were easy, everyone would do it"],
+        answer: 0,
+        correct: "I may be the Imp. But I'm no jackass",
+        image: 'eleven.gif',
+    }, {
+        question: "What infamous song plays during the Red Wedding?",
+        choices: ["The Rains of Castamere", "It's Always Summer Under the Sea", "Gentle Mother, Font of Mercy", "The bear and the Maiden Fair"],
+        answer: 0,
+        correct: "The Rains of Castamere",
+        image: 'twelve.gif',
+    }, {
+        question: "Which of the following is NOT a face of 'the Seven'?",
+        choices: ["The Maiden", "The Widow", "The Mother", "The Stranger"],
+        answer: 1,
+        correct: "The Widow",
+        image: 'thirteen.gif',
+    }, {
+        question: "What is the official Lannister family motto?",
+        choices: ["Hear Me Roar", "A Lannister always pays his debts", "None So Fierce", "Never knowingly undersold"],
+        answer: 0,
+        correct: "Hear Me Roar",
+        image: 'fourteen.gif',
     }
 ];
 
