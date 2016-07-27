@@ -3,7 +3,6 @@ $(document).ready(function() {
     var time = 30;
     var correct = 0;
     var incorrect = 0;
-    var count = 0;
     var pick = 0;
     var timer;
     var choice;
@@ -13,49 +12,81 @@ $(document).ready(function() {
         game.new();
     });
 
-    //9. show stats at the end and give them an option to start over.
-
     var trivia = [{
-        question: "What is the answer?",
-        choices: ["not this0", "not this", "not this", "this"],
-        answer: 3,
-        correct: "this",
-        image: 'test.gif',
+        question: "In <i>The Secret World of Alex Mack</i>, what's the name of Alex' Sister?",
+        choices: ["Beth", "Diana", "Annie", "Kelly"],
+        answer: 2,
+        correct: "Annie",
+        image: 'alexMack.gif',
     }, {
-        question: "What is the answer?",
-        choices: ["not this1", "not this", "not this", "this"],
-        answer: 3,
-        correct: "this",
-        image: 'test.gif',
+        question: "The fictional city where <i>Hey Arnold!</i> is set is called:",
+        choices: ["Hillwood", "Hill Valley", "Pleasantville", "Radiator Springs"],
+        answer: 0,
+        correct: "Hillwood",
+        image: 'arnold.gif',
     }, {
-        question: "What is the answer?",
-        choices: ["not this2", "not this", "not this", "this"],
+        question: "How many seasons did <i>The Wild Thornberrys</i> have?",
+        choices: ["1", "3", "4", "5"],
         answer: 3,
-        correct: "this",
-        image: 'test.gif',
+        correct: "5",
+        image: 'thornberry.png',
     }, {
-        question: "What is the answer?",
-        choices: ["not this3", "not this", "not this", "this"],
-        answer: 3,
-        correct: "this",
-        image: 'test.gif',
+        question: "What type of animal is Rocko from <i>Rocko's Modern Life</i>?",
+        choices: ["Dog", "Wallaby", "Kangaroo", "Bear"],
+        answer: 1,
+        correct: "Wallaby",
+        image: 'rocko.gif',
     }, {
-        question: "What is the answer?",
-        choices: ["not this4", "not this", "not this", "this"],
+        question: "What year id <i>Clarissa Explains It All</i> start airing?",
+        choices: ["1991", "1992", "1993", "1994"],
+        answer: 0,
+        correct: "1991",
+        image: 'clarissa.gif',
+    }, {
+        question: "Ryan Gosling appeard on this Nick show in 1995:",
+        choices: ["<i>All That</i>", "<i>The Adventures of Pete and Pete</i>", "<i>Are You Afraid of the Dark?</i>", "<i>The Secret World of Alex Mack</i>"],
+        answer: 2,
+        correct: "<i>Are You Afraid of the Dark?</i>",
+        image: 'dark.gif',
+    }, {
+        question: "What was the name of Doug's dog on <i>Doug</i>?",
+        choices: ["Doug Jr.", "Skeeter", "Stinky", "Porkchop"],
         answer: 3,
-        correct: "this",
-        image: 'test.gif',
-    }, ];
-    console.log(trivia.length);
-
-
+        correct: "Porkchop",
+        image: 'doug.gif',
+    }, {
+        question: "How many teams competed in each game on <i>Legends of the Hidden Temple</i>?",
+        choices: ["2", "4", "6", "8"],
+        answer: 2,
+        correct: "6",
+        image: 'temple.gif',
+    }, {
+        question: "How do Tommy and Angelica know each other on <i>Rugrats</i>?",
+        choices: ["They are neighbors", "They are family friends", "They are brother and sister", "They are cousins"],
+        answer: 3,
+        correct: "They are cousins",
+        image: 'rugrats.gif',
+    }, {
+        question: "The show <i>Kenan & Kel</i> took place in:",
+        choices: ["New York City", "Chicago", "Los Angeles", "Miami"],
+        answer: 1,
+        correct: "Chicago",
+        image: 'kenan.gif',
+    }, {
+        question: "What was the name of the burger place on <i>All That</i>?",
+        choices: ["In-N-Out Burger", "Sweet Burger", "Good Burger", "Amazing Burger"],
+        answer: 2,
+        correct: "Good Burger",
+        image: 'allthat.gif',
+    },
+];
 
     var game = {
         new: function() {
             $('#start').hide();
             $('#timer').show();
             game.timerReset();
-            timer = setInterval(game.countdown, 500);
+            timer = setInterval(game.countdown, 1000);
             game.data();
         },
 
@@ -85,7 +116,7 @@ $(document).ready(function() {
         correct: function() {
             correct++;
             clearInterval(timer);
-            $('#timer').hide();
+            $('#timer').html("CORRECT");
             console.log("correct", correct);
             game.displayAnswer();
         },
@@ -93,7 +124,7 @@ $(document).ready(function() {
         incorrect: function() {
             incorrect++;
             clearInterval(timer);
-            $('#timer').hide();
+            $('#timer').html("INCORRECT");
             console.log("incorrect", incorrect);
             game.displayAnswer();
         },
@@ -101,8 +132,7 @@ $(document).ready(function() {
         data: function() {
             choice = pick;
             pick++;
-            count++;
-            $('#question').html(question);
+            $('#question').html(trivia[choice].question);
             $.each(trivia[choice].choices, function(index, value) {
                 var answer = $('<p>')
                     .addClass('choice')
@@ -119,11 +149,11 @@ $(document).ready(function() {
                 .addClass('img-responsive')
                 .attr('src', 'assets/images/' + trivia[choice].image);
             $('#answer').html(picture);
-            display = setTimeout(game.nextQuestion, 1000);
+            display = setTimeout(game.nextQuestion, 4000);
         },
 
         nextQuestion: function() {
-            if (count !== trivia.length) {
+            if (pick !== trivia.length) {
                 time = 30;
                 $('#answer').empty();
                 game.new();
@@ -138,9 +168,9 @@ $(document).ready(function() {
             $('#question').html('GAME OVER');
             $('#answer').html("Number of correct answers: " + correct + "<br>Number of incorrect answers: " + incorrect);
             var reset = $("<button>")
-                    .addClass('btn btn primary')
-                    .html('Play Again?')
-                    .attr('id', 'reset');
+                .addClass('btn btn primary')
+                .html('Play Again?')
+                .attr('id', 'reset');
             $('#reset').html(reset);
         },
 
@@ -148,7 +178,6 @@ $(document).ready(function() {
             time = 30;
             correct = 0;
             incorrect = 0;
-            count = 0;
             pick = 0;
             timer = undefined;
             choice = undefined;
