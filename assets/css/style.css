@@ -65,6 +65,7 @@ h1 {
   width: 400px;
   margin: 10px auto;
   border-radius: 5px;
+  padding: 5px;
 }
 
 #answer {
