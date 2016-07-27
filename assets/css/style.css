@@ -4,14 +4,35 @@
 }
 
 @font-face {
-    font-family: "rocket";
-    src: url(../font/RocketFuel.otf) format("opentype");
+    font-family: "retro";
+    src: url(../font/retro.ttf) format("truetype");
 }
 
 .container {
   max-width: 960px;
   margin: 0 auto;
   background-color: white;
+}
+
+.game {
+  max-width: 750px;
+  margin: 0 auto;
+  height: 400px;
+  font-size: 24px;
+  font-family: monospace;
+}
+
+.gameButton {
+  background-color: blue;
+  color: #ff5dce;
+  font-family: "retro";
+  font-size: 50px;
+}
+
+.gameButton:hover {
+  text-decoration: none;
+  background-color: #ff5dce;
+  color: blue;
 }
 
 body {
@@ -23,9 +44,23 @@ body {
 }
 
 h1 {
-  font-family: "rocket";
+  font-family: "retro";
   font-size: 70px;
   color: blue;
+  margin: 30px auto;
+}
+
+.row {
+  margin: 10px auto;
+}
+
+#question {
+  font-size: 24px;
+}
+
+#timer {
+  font-size: 16px;
+  color: orange;
 }
 
 .nick {
@@ -34,7 +69,27 @@ h1 {
   color: orange;
 }
 
+.choice {
+  background-color: #ff5dce;
+  color: blue;
+  font-size: 24px;
+  font-family: monospace;
+  width: 400px;
+  margin: 10px auto;
+}
+
+#answer {
+  width: 400px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.image {
+  max-width: 300px;
+}
+
 .choice:hover {
-  color: purple;
-  border: 1px solid red;
+  color: #ff5dce;
+  background-color: blue;
+  border: 3px solid #ff5dce;
 }

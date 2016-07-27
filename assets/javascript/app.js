@@ -146,10 +146,10 @@ $(document).ready(function() {
         displayAnswer: function() {
             $('#question').html("The correct answer was " + trivia[choice].correct);
             var picture = $('<img>')
-                .addClass('img-responsive')
+                .addClass('img-responsive image center-block')
                 .attr('src', 'assets/images/' + trivia[choice].image);
             $('#answer').html(picture);
-            display = setTimeout(game.nextQuestion, 4000);
+            display = setTimeout(game.nextQuestion, 3000);
         },
 
         nextQuestion: function() {
@@ -166,10 +166,10 @@ $(document).ready(function() {
             clearInterval(timer);
             $('#timer').hide();
             $('#question').html('GAME OVER');
-            $('#answer').html("Number of correct answers: " + correct + "<br>Number of incorrect answers: " + incorrect);
+            $('#answer').html("Correct answers: " + correct + "<br>Incorrect answers: " + incorrect);
             var reset = $("<button>")
-                .addClass('btn btn primary')
-                .html('Play Again?')
+                .addClass('btn gameButton')
+                .html('Play Again')
                 .attr('id', 'reset');
             $('#reset').html(reset);
         },
