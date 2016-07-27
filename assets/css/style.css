@@ -2,102 +2,85 @@
     font-family: "got";
     src: url(../font/gameofthrones.ttf) format("truetype");
 }
-
 @import url(https://fonts.googleapis.com/css?family=Carrois+Gothic+SC);
-
 .game {
-  max-width: 750px;
-  margin: 0 auto;
-  height: 320px;
-  font-size: 24px;
-  font-family: 'Carrois Gothic SC', sans-serif;
+    max-width: 750px;
+    margin: 0 auto;
+    height: 320px;
+    font-size: 24px;
+    font-family: 'Carrois Gothic SC', sans-serif;
 }
-
 .gameButton {
-  background-color: black;
-  color: white;
-  font-family: "got";
-  font-size: 50px;
-  margin: 20px auto;
+    background-color: black;
+    color: white;
+    font-family: "got";
+    font-size: 50px;
+    margin: 20px auto;
 }
-
 .gameButton:hover {
-  text-decoration: none;
-  background-color: white;
-  color: black;
+    text-decoration: none;
+    background-color: white;
+    color: black;
 }
-
 body {
-	background: url("../images/background.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-
 h1 {
-  font-family: "got";
-  font-size: 70px;
-  color: black;
-  margin: 30px auto;
+    font-family: "got";
+    font-size: 70px;
+    color: black;
+    margin: 30px auto;
 }
-
 .row {
-  margin: 10px auto;
+    margin: 10px auto;
 }
-
 #question {
-  font-size: 24px;
+    font-size: 24px;
 }
-
 #timer {
-  font-size: 36px;
-  color: black;
-  font-weight: bold;
-  font-family: "got";
+    font-size: 36px;
+    color: black;
+    font-weight: bold;
+    font-family: "got";
 }
-
 .choice {
-  background-color: black;
-  color: white;
-  font-size: 24px;
-  font-family: 'Carrois Gothic SC', sans-serif;
-  width: 400px;
-  margin: 10px auto;
-  border-radius: 5px;
-  padding: 5px;
+    background-color: black;
+    color: white;
+    font-size: 24px;
+    font-family: 'Carrois Gothic SC', sans-serif;
+    width: 400px;
+    margin: 10px auto;
+    border-radius: 5px;
+    padding: 5px;
 }
-
 #answer {
-  width: 400px;
-  margin: 10px auto;
-  text-align: center;
+    width: 400px;
+    margin: 10px auto;
+    text-align: center;
 }
-
 .image {
-  max-width: 400px;
+    max-width: 400px;
 }
-
 .choice:hover {
-  color: black;
-  background-color: white;
-  border: 3px solid black;
+    color: black;
+    background-color: white;
+    border: 3px solid black;
 }
-
 @media (max-width: 768px) {
-  h1 {
-    font-size: 36px;
-  }
-
-  .choice, .game {
-    font-size: 16px;
-  }
-
-  .choice {
-    width: 300px;
-  }
-
-  .gameButton {
-    font-size: 36px;
-  }
+    h1 {
+        font-size: 36px;
+    }
+    .choice, .game {
+        font-size: 16px;
+    }
+    .choice {
+        width: 300px;
+    }
+    .gameButton {
+        font-size: 36px;
+    }
 }
