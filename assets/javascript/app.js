@@ -10,6 +10,7 @@ $(document).ready(function() {
 
     $('#start').click(function() {
         game.new();
+        playAudio();
     });
 
     var trivia = [{
@@ -189,6 +190,7 @@ $(document).ready(function() {
                 .addClass('btn gameButton')
                 .html('Play Again')
                 .attr('id', 'reset');
+            stopAudio();
             $('#reset').html(reset);
         },
 
@@ -207,7 +209,18 @@ $(document).ready(function() {
             game.new();
         }
     };
-    $('#reset').on('click', game.reset);
+    $('#reset').on('click', function() {
+        game.reset();
+        playAudio();
+    });
 
+    var audio = new Audio();
+    function playAudio() {
+        audio.src = "assets/sounds/theme.mp3";
+        audio.play();
+    }
 
+    function stopAudio() {
+        audio.pause();
+    }
 });
