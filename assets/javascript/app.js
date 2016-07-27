@@ -145,22 +145,21 @@ $(document).ready(function() {
         },
 
         reset: function() {
-            timer=30;
-            var time = 30;
-            var correct = 0;
-            var incorrect = 0;
-            var count = 0;
-            var pick = 0;
-            var timer;
-            var choice;
-            var display;
+            time = 30;
+            correct = 0;
+            incorrect = 0;
+            count = 0;
+            pick = 0;
+            timer = undefined;
+            choice = undefined;
+            display = undefined;
             $('#timer').empty();
             $('#question').empty();
             $('#answer').empty();
             game.new();
         }
     };
-    // $('#reset').on('click', game.reset);
+    $('#reset').on('click', game.reset);
 
 
 });
