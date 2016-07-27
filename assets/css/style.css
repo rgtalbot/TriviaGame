@@ -83,3 +83,21 @@ h1 {
   background-color: white;
   border: 3px solid black;
 }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  .choice, .game {
+    font-size: 16px;
+  }
+
+  .choice {
+    width: 300px;
+  }
+
+  .gameButton {
+    font-size: 36px;
+  }
+}
