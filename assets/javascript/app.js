@@ -116,8 +116,10 @@ $(document).ready(function() {
                 time--;
                 $('#timer').html(time);
             } else {
+                incorrect++;
                 clearInterval(timer);
-                game.incorrect();
+                $('#timer').html("TIME IS UP");
+                game.displayAnswer();
             }
         },
 
