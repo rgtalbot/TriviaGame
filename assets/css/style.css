@@ -35,6 +35,11 @@ h1 {
     color: black;
     margin: 30px auto;
 }
+.mute {
+    width: 40px;
+    height: 40px;
+    float: right;
+}
 .row {
     margin: 10px auto;
 }

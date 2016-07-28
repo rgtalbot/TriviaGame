@@ -7,12 +7,161 @@ $(document).ready(function() {
     var timer;
     var display;
     var i;
+    var mute = false;
+    $('#mute').hide();
 
-    //click to start game
+    //clicks in  the game
     $('#start').click(function() {
         game.new();
         playAudio();
     });
+
+    $('#reset').click(function() {
+        game.reset();
+        playAudio();
+    });
+
+    $('#mute').click(function() {
+        if (mute == false) {
+            audio.pause();
+            $(this).attr('src', 'assets/images/unmute.png');
+            mute = true;
+        } else if (mute == true) {
+            audio.play();
+            $(this).attr('src', 'assets/images/mute.png');
+            mute = false;
+        }
+    });
+
+    //object of all the functions that make the game run
+    var game = {
+        new: function() {
+            $('#start').hide();
+            game.timerReset();
+            timer = setInterval(game.countdown, 1000);
+            game.data();
+        },
+
+        countdown: function() {
+            if (time > 0) {
+                time--;
+                $('#timer').html(time);
+            } else {
+                incorrect++;
+                clearInterval(timer);
+                $('#timer').html("TIME IS UP");
+                game.displayAnswer();
+            }
+        },
+
+        timerReset: function() {
+            time = 20;
+            $('#timer').html(time);
+        },
+
+        check: function() {
+            if ($(this).attr('data-id') == i.answer) {
+                game.correct();
+            } else {
+                game.incorrect();
+            }
+        },
+
+        correct: function() {
+            correct++;
+            clearInterval(timer);
+            $('#timer').html("CORRECT");
+            $('#question').empty();
+            game.displayAnswer();
+        },
+
+        incorrect: function() {
+            incorrect++;
+            clearInterval(timer);
+            $('#timer').html("INCORRECT");
+            $('#question').html("The correct answer was " + i.correct);
+            game.displayAnswer();
+        },
+
+        data: function() {
+            i = trivia[current];
+            current++;
+            $('#question').html(i.question);
+            $.each(i.choices, function(index, value) {
+                var answer = $('<button>')
+                    .addClass('btn choice')
+                    .html(i.choices[index])
+                    .attr('data-id', index)
+                    .on('click', game.check);
+                $('#answer').append(answer);
+            });
+        },
+
+        displayAnswer: function() {
+            var picture = $('<img>')
+                .addClass('img-rounded image center-block')
+                .attr('src', 'assets/images/' + i.image);
+            $('#answer').html(picture);
+            display = setTimeout(game.nextQuestion, 5000);
+        },
+
+        nextQuestion: function() {
+            if (current !== trivia.length) {
+                time = 20;
+                $('#answer').empty();
+                game.new();
+            } else {
+                game.endGame();
+            }
+        },
+
+        endGame: function() {
+            clearInterval(timer);
+            $('#timer').hide();
+            $('#question').html('GAME OVER');
+            $('#answer').html("Correct answers: " + correct + "<br>Incorrect answers: " + incorrect);
+            var reset = $("<button>")
+                .addClass('btn gameButton')
+                .html('Play Again')
+                .attr('id', 'reset');
+            stopAudio();
+            $('#reset').html(reset);
+        },
+
+        reset: function() {
+            time = 20;
+            correct = 0;
+            incorrect = 0;
+            current = 0;
+            timer = undefined;
+            choice = undefined;
+            display = undefined;
+            $('#timer').empty();
+            $('#question').empty();
+            $('#answer').empty();
+            $('#reset').empty();
+            game.new();
+        }
+    };
+
+    //audio functions
+    var audio = new Audio();
+    audio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
+
+    function playAudio() {
+        $('#mute').show();
+        audio.src = "assets/sounds/theme.mp3";
+        audio.play();
+    }
+
+    function stopAudio() {
+        $('#mute').hide();
+        audio.pause();
+        audio.currentTime = 0;
+    }
 
     //array of all the question and answer objects
     var trivia = [{
@@ -100,136 +249,4 @@ $(document).ready(function() {
         correct: "Hear Me Roar",
         image: 'fourteen.gif',
     }];
-
-    //object of all the functions that make the game run
-    var game = {
-        new: function() {
-            $('#start').hide();
-            $('#timer').show();
-            game.timerReset();
-            timer = setInterval(game.countdown, 1000);
-            game.data();
-        },
-
-        countdown: function() {
-            if (time > 0) {
-                time--;
-                $('#timer').html(time);
-            } else {
-                incorrect++;
-                clearInterval(timer);
-                $('#timer').html("TIME IS UP");
-                game.displayAnswer();
-            }
-        },
-
-        timerReset: function() {
-            time = 20;
-            $('#timer').html(time);
-        },
-
-        check: function() {
-            if ($(this).attr('data-id') == i.answer) {
-                game.correct();
-            } else {
-                game.incorrect();
-            }
-        },
-
-        correct: function() {
-            correct++;
-            clearInterval(timer);
-            $('#timer').html("CORRECT");
-            game.displayAnswer();
-        },
-
-        incorrect: function() {
-            incorrect++;
-            clearInterval(timer);
-            $('#timer').html("INCORRECT");
-            game.displayAnswer();
-        },
-
-        data: function() {
-            i = trivia[current];
-            current++;
-            $('#question').html(i.question);
-            $.each(i.choices, function(index, value) {
-                var answer = $('<button>')
-                    .addClass('btn choice')
-                    .html(i.choices[index])
-                    .attr('data-id', index)
-                    .on('click', game.check);
-                $('#answer').append(answer);
-            });
-        },
-
-        displayAnswer: function() {
-            $('#question').html("The correct answer was " + i.correct);
-            var picture = $('<img>')
-                .addClass('img-rounded image center-block')
-                .attr('src', 'assets/images/' + i.image);
-            $('#answer').html(picture);
-            display = setTimeout(game.nextQuestion, 5000);
-        },
-
-        nextQuestion: function() {
-            if (current !== trivia.length) {
-                time = 20;
-                $('#answer').empty();
-                game.new();
-            } else {
-                game.endGame();
-            }
-        },
-
-        endGame: function() {
-            clearInterval(timer);
-            $('#timer').hide();
-            $('#question').html('GAME OVER');
-            $('#answer').html("Correct answers: " + correct + "<br>Incorrect answers: " + incorrect);
-            var reset = $("<button>")
-                .addClass('btn gameButton')
-                .html('Play Again')
-                .attr('id', 'reset');
-            stopAudio();
-            $('#reset').html(reset);
-        },
-
-        reset: function() {
-            time = 20;
-            correct = 0;
-            incorrect = 0;
-            current = 0;
-            timer = undefined;
-            choice = undefined;
-            display = undefined;
-            $('#timer').empty();
-            $('#question').empty();
-            $('#answer').empty();
-            $('#reset').empty();
-            game.new();
-        }
-    };
-    $('#reset').on('click', function() {
-        game.reset();
-        playAudio();
-    });
-
-    //audio functions
-    var audio = new Audio();
-    audio.addEventListener('ended', function() {
-        this.currentTime = 0;
-        this.play();
-    }, false);
-
-    function playAudio() {
-        audio.src = "assets/sounds/theme.mp3";
-        audio.play();
-    }
-
-    function stopAudio() {
-        audio.pause();
-        audio.currentTime = 0;
-    }
 });
