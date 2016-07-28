@@ -170,7 +170,7 @@ $(document).ready(function() {
                 .addClass('img-rounded image center-block')
                 .attr('src', 'assets/images/' + trivia[choice].image);
             $('#answer').html(picture);
-            display = setTimeout(game.nextQuestion, 2500);
+            display = setTimeout(game.nextQuestion, 5000);
         },
 
         nextQuestion: function() {
