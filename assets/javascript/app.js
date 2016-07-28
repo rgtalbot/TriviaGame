@@ -157,8 +157,8 @@ $(document).ready(function() {
             pick++;
             $('#question').html(trivia[choice].question);
             $.each(trivia[choice].choices, function(index, value) {
-                var answer = $('<p>')
-                    .addClass('choice')
+                var answer = $('<button>')
+                    .addClass('btn choice')
                     .html(trivia[choice].choices[index])
                     .attr('data-id', index)
                     .on('click', game.check);
