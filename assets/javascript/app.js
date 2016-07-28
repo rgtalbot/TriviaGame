@@ -1,6 +1,6 @@
 $(document).ready(function() {
     //variables
-    var time = 30;
+    var time = 20;
     var correct = 0;
     var incorrect = 0;
     var pick = 0;
@@ -124,7 +124,7 @@ $(document).ready(function() {
         },
 
         timerReset: function() {
-            time = 30;
+            time = 20;
             $('#timer').html(time);
         },
 
@@ -140,7 +140,6 @@ $(document).ready(function() {
             correct++;
             clearInterval(timer);
             $('#timer').html("CORRECT");
-            console.log("correct", correct);
             game.displayAnswer();
         },
 
@@ -148,7 +147,6 @@ $(document).ready(function() {
             incorrect++;
             clearInterval(timer);
             $('#timer').html("INCORRECT");
-            console.log("incorrect", incorrect);
             game.displayAnswer();
         },
 
@@ -177,7 +175,7 @@ $(document).ready(function() {
 
         nextQuestion: function() {
             if (pick !== trivia.length) {
-                time = 30;
+                time = 20;
                 $('#answer').empty();
                 game.new();
             } else {
@@ -199,7 +197,7 @@ $(document).ready(function() {
         },
 
         reset: function() {
-            time = 30;
+            time = 20;
             correct = 0;
             incorrect = 0;
             pick = 0;
@@ -220,6 +218,10 @@ $(document).ready(function() {
 
     //audio functions
     var audio = new Audio();
+    audio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
 
     function playAudio() {
         audio.src = "assets/sounds/theme.mp3";
