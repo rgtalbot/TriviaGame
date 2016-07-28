@@ -3,10 +3,10 @@ $(document).ready(function() {
     var time = 20;
     var correct = 0;
     var incorrect = 0;
-    var pick = 0;
+    var current = 0;
     var timer;
-    var choice;
     var display;
+    var i;
 
     //click to start game
     $('#start').click(function() {
@@ -129,7 +129,7 @@ $(document).ready(function() {
         },
 
         check: function() {
-            if ($(this).attr('data-id') == trivia[choice].answer) {
+            if ($(this).attr('data-id') == i.answer) {
                 game.correct();
             } else {
                 game.incorrect();
@@ -151,13 +151,13 @@ $(document).ready(function() {
         },
 
         data: function() {
-            choice = pick;
-            pick++;
-            $('#question').html(trivia[choice].question);
-            $.each(trivia[choice].choices, function(index, value) {
+            i = trivia[current];
+            current++;
+            $('#question').html(i.question);
+            $.each(i.choices, function(index, value) {
                 var answer = $('<button>')
                     .addClass('btn choice')
-                    .html(trivia[choice].choices[index])
+                    .html(i.choices[index])
                     .attr('data-id', index)
                     .on('click', game.check);
                 $('#answer').append(answer);
@@ -165,16 +165,16 @@ $(document).ready(function() {
         },
 
         displayAnswer: function() {
-            $('#question').html("The correct answer was " + trivia[choice].correct);
+            $('#question').html("The correct answer was " + i.correct);
             var picture = $('<img>')
                 .addClass('img-rounded image center-block')
-                .attr('src', 'assets/images/' + trivia[choice].image);
+                .attr('src', 'assets/images/' + i.image);
             $('#answer').html(picture);
             display = setTimeout(game.nextQuestion, 5000);
         },
 
         nextQuestion: function() {
-            if (pick !== trivia.length) {
+            if (current !== trivia.length) {
                 time = 20;
                 $('#answer').empty();
                 game.new();
@@ -200,7 +200,7 @@ $(document).ready(function() {
             time = 20;
             correct = 0;
             incorrect = 0;
-            pick = 0;
+            current = 0;
             timer = undefined;
             choice = undefined;
             display = undefined;
