@@ -10,17 +10,20 @@ $(document).ready(function() {
     var i;
     var randomizedArray;
     var mute = false;
+
     $('#mute').hide();
 
-    //clicks in  the game
+    //click to star the game
     $('#start').click(function() {
         game.new();
         playAudio();
     });
+    //click to reset the game
     $('#reset').click(function() {
         game.reset();
         playAudio();
     });
+    //click to toggle the sounds
     $('#mute').click(function() {
         if (mute == false) {
             audio.pause();
@@ -35,6 +38,7 @@ $(document).ready(function() {
 
     //object of all the functions that make the game run
     var game = {
+        //pick 10 random questions and push them to trivia array
         randomizeQuestions: function() {
             randomizedArray = triviaQuestions.sort(function(a, b) {
                 return 0.5 - Math.random()
@@ -43,20 +47,23 @@ $(document).ready(function() {
                 trivia.push(randomizedArray.pop());
             }
         },
+        //randomize the order of the choices
         randomizeChoices: function() {
-            for (var i=0; i<trivia.length; i++) {
+            for (var i = 0; i < trivia.length; i++) {
                 var randomChoice = trivia[i].choices.sort(function(a, b) {
                     return 0.5 - Math.random()
                 });
 
             }
         },
+        //start the timer and run the data function
         new: function() {
             $('#start').hide();
             game.timerReset();
             timer = setInterval(game.countdown, 1000);
             game.data();
         },
+        //countdown the clock and move on as incorrect if time expires
         countdown: function() {
             if (time > 0) {
                 time--;
@@ -68,10 +75,12 @@ $(document).ready(function() {
                 game.displayAnswer();
             }
         },
+        //reset the timer to 20 seconds
         timerReset: function() {
             time = 20;
             $('#timer').html(time);
         },
+        //check to see if the clicked answer is correct
         check: function() {
             if ($(this).text() == i.correct) {
                 game.correct();
@@ -81,6 +90,7 @@ $(document).ready(function() {
                 console.log(typeof(i.correct) + ": " + i.correct);
             }
         },
+        //what to do for a correct answer
         correct: function() {
             correct++;
             clearInterval(timer);
@@ -88,6 +98,7 @@ $(document).ready(function() {
             $('#question').empty();
             game.displayAnswer();
         },
+        //what to do for an incorrect answer
         incorrect: function() {
             incorrect++;
             clearInterval(timer);
@@ -95,6 +106,7 @@ $(document).ready(function() {
             $('#question').html("The correct answer was " + i.correct);
             game.displayAnswer();
         },
+        //display the current question
         data: function() {
             i = trivia[current];
             current++;
@@ -107,6 +119,7 @@ $(document).ready(function() {
                 $('#answer').append(answer);
             });
         },
+        //display the answer after a selection
         displayAnswer: function() {
             var picture = $('<img>')
                 .addClass('img-rounded image center-block')
@@ -114,6 +127,7 @@ $(document).ready(function() {
             $('#answer').html(picture);
             display = setTimeout(game.nextQuestion, 5000);
         },
+        //move on to the next question or end the game
         nextQuestion: function() {
             if (current !== trivia.length) {
                 time = 20;
@@ -123,6 +137,7 @@ $(document).ready(function() {
                 game.endGame();
             }
         },
+        //show the stats screen when the game ends
         endGame: function() {
             clearInterval(timer);
             $('#timer').hide();
@@ -135,6 +150,7 @@ $(document).ready(function() {
             stopAudio();
             $('#reset').html(reset);
         },
+        //reset the game
         reset: function() {
             time = 20;
             correct = 0;
@@ -156,17 +172,20 @@ $(document).ready(function() {
         }
     };
 
-    //audio functions
+    //audio
     var audio = new Audio();
+    //run the audio in a loop
     audio.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
     }, false);
+    //function to start the music when you click start and show the mute button
     function playAudio() {
         $('#mute').show();
         audio.src = "assets/sounds/theme.mp3";
         audio.play();
     }
+    //function to stop the audio when the game ends and reset the audio back to the start for the reset
     function stopAudio() {
         $('#mute').hide();
         audio.pause();
