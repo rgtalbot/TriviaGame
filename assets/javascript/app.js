@@ -27,11 +27,11 @@ $(document).ready(function() {
     $('#mute').click(function() {
         if (mute == false) {
             audio.pause();
-            $(this).attr('src', 'assets/images/unmute.png');
+            $(this).attr('src', 'assets/images/mute.png');
             mute = true;
         } else if (mute == true) {
             audio.play();
-            $(this).attr('src', 'assets/images/mute.png');
+            $(this).attr('src', 'assets/images/unmute.png');
             mute = false;
         }
     });
@@ -43,14 +43,14 @@ $(document).ready(function() {
             randomizedArray = triviaQuestions.sort(function(a, b) {
                 return 0.5 - Math.random()
             });
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 2; i++) {
                 trivia.push(randomizedArray.pop());
             }
         },
         //randomize the order of the choices
         randomizeChoices: function() {
             for (var i = 0; i < trivia.length; i++) {
-                var randomChoice = trivia[i].choices.sort(function(a, b) {
+                var randomChoice = trivia[current].choices.sort(function(a, b) {
                     return 0.5 - Math.random()
                 });
 
@@ -147,7 +147,6 @@ $(document).ready(function() {
                 .addClass('btn gameButton')
                 .html('Play Again')
                 .attr('id', 'reset');
-            stopAudio();
             $('#reset').html(reset);
         },
         //reset the game
@@ -160,12 +159,14 @@ $(document).ready(function() {
             choice = undefined;
             display = undefined;
             randomizedArray = undefined;
+            i = trivia[current];
             trivia = [];
             $('#timer').show();
             $('#timer').empty();
             $('#question').empty();
             $('#answer').empty();
             $('#reset').empty();
+            stopAudio();
             game.randomizeQuestions();
             game.randomizeChoices();
             game.new();
