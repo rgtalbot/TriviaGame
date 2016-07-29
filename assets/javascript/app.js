@@ -21,16 +21,15 @@ $(document).ready(function() {
     //click to reset the game
     $('#reset').click(function() {
         game.reset();
-        playAudio();
     });
     //click to toggle the sounds
     $('#mute').click(function() {
         if (mute == false) {
-            audio.pause();
+            audio.muted=true;
             $(this).attr('src', 'assets/images/mute.png');
             mute = true;
         } else if (mute == true) {
-            audio.play();
+            audio.muted=false;
             $(this).attr('src', 'assets/images/unmute.png');
             mute = false;
         }
@@ -86,8 +85,6 @@ $(document).ready(function() {
                 game.correct();
             } else {
                 game.incorrect();
-                console.log(typeof(this.textContent) + ": " + this.textContent);
-                console.log(typeof(i.correct) + ": " + i.correct);
             }
         },
         //what to do for a correct answer
@@ -166,7 +163,6 @@ $(document).ready(function() {
             $('#question').empty();
             $('#answer').empty();
             $('#reset').empty();
-            stopAudio();
             game.randomizeQuestions();
             game.randomizeChoices();
             game.new();
@@ -185,12 +181,6 @@ $(document).ready(function() {
         $('#mute').show();
         audio.src = "assets/sounds/theme.mp3";
         audio.play();
-    }
-    //function to stop the audio when the game ends and reset the audio back to the start for the reset
-    function stopAudio() {
-        $('#mute').hide();
-        audio.pause();
-        audio.currentTime = 0;
     }
 
     //array of all the question and answer objects
@@ -225,7 +215,7 @@ $(document).ready(function() {
         correct: "Blindness",
         image: 'six.gif',
     }, {
-        question: "'It's nothing' were the last words of this infamous character:",
+        question: '"It\'s nothing" were the last words of this infamous character:',
         choices: ["Renly Baratheon", "Tywin Lannister", "Robb Stark", "King Joffrey"],
         correct: "King Joffrey",
         image: 'seven.gif',
@@ -278,7 +268,6 @@ $(document).ready(function() {
         choices: ["Boar", "Bear", "Stag", "Lion"],
         correct: "Stag",
         image: 'seventeen.gif',
-
     }, {
         question: "How many kingdoms are in Westeros?",
         choices: ["Seven", "Five", "Nine", "Three"],
