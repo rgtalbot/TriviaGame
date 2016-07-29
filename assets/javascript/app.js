@@ -1,17 +1,17 @@
 $(document).ready(function() {
     //variables
-    var time = 20;
-    var correct = 0;
-    var incorrect = 0;
-    var current = 0;
-    var trivia = [];
-    var timer;
-    var display;
-    var i;
-    var randomizedArray;
-    var mute = false;
+    var time = 20,
+        correct = 0,
+        incorrect = 0,
+        current = 0,
+        trivia = [],
+        timer,
+        display,
+        i,
+        randomizedArray,
+        mute = false;
 
-    $('#mute').hide();
+        $('#mute').hide();
 
     //click to star the game
     $('#start').click(function() {
