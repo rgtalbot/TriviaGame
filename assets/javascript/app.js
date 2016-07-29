@@ -264,7 +264,38 @@ $(document).ready(function() {
         choices: ["Hear Me Roar", "A Lannister always pays his debts", "None So Fierce", "Never knowingly undersold"],
         correct: "Hear Me Roar",
         image: 'fourteen.gif',
-    }];
+    }, {
+        question: "Who were the Unsullied NOT instructed to kill in Astapor?",
+        choices: ["The Council", "The Soldiers", "The Men Holding Whips", "The Masters"],
+        correct: "The Council",
+        image: "fifteen.gif",
+    }, {
+        question: "What is NOT part of the Night's Watch vows?",
+        choices: ["Win No Glory", "Take No Wife", "Kill No Innocent", "Father No Children"],
+        correct: "Kill No Innocent",
+        image: "sixteen.gif",
+    }, {question: "What animal is on House Baratheon's sigil?",
+        choices: ["Boar", "Bear", "Stag", "Lion"],
+        correct: "Stag",
+        image: 'seventeen.gif',
+
+    }, {
+        question: "How many kingdoms are in Westeros?",
+        choices: ["Seven", "Five", "Nine", "Three"],
+        correct: "Seven",
+        image: "eighteen.jpg",
+    }, {
+        question: "The night is dark and full of ________.",
+        choices: ["Blood", "Evil", "Death", "Terrors"],
+        correct: "Terrors",
+        image: "nineteen.gif",
+    }, {
+        question: "Where is the Iron Bank?",
+        choices: ["Braavos", "Highgarden", "Pyke", "Dorne"],
+        correct: "Braavos",
+        image: "twenty.jpg",
+    }
+    ];
 
 
     game.randomizeQuestions();

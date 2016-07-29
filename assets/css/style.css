@@ -64,12 +64,12 @@ h1 {
     white-space: normal;
 }
 #answer {
-    width: 400px;
+    width: 600px;
     margin: 10px auto;
     text-align: center;
 }
 .image {
-    max-width: 400px;
+    max-width: 600px;
 }
 .choice:hover {
     color: black;
