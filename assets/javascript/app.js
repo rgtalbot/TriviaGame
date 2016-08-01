@@ -13,7 +13,7 @@ $(document).ready(function() {
 
         $('#mute').hide();
 
-    //click to star the game
+    //click to start the game
     $('#start').click(function() {
         game.new();
         playAudio();
@@ -40,16 +40,16 @@ $(document).ready(function() {
         //pick 10 random questions and push them to trivia array
         randomizeQuestions: function() {
             randomizedArray = triviaQuestions.sort(function(a, b) {
-                return 0.5 - Math.random()
+                return 0.5 - Math.random();
             });
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 2; i++) {
                 trivia.push(randomizedArray.pop());
             }
         },
         //randomize the order of the choices
         randomizeChoices: function() {
             for (var i = 0; i < trivia.length; i++) {
-                var randomChoice = trivia[current].choices.sort(function(a, b) {
+                var randomChoice = trivia[i].choices.sort(function(a, b) {
                     return 0.5 - Math.random()
                 });
 
@@ -71,6 +71,7 @@ $(document).ready(function() {
                 incorrect++;
                 clearInterval(timer);
                 $('#timer').html("TIME IS UP");
+                $('#question').html('The correct answer was ' + i.correct);
                 game.displayAnswer();
             }
         },
@@ -157,6 +158,7 @@ $(document).ready(function() {
             display = undefined;
             randomizedArray = undefined;
             i = trivia[current];
+            triviaQuestions = triviaQuestions.concat(trivia);
             trivia = [];
             $('#timer').show();
             $('#timer').empty();
