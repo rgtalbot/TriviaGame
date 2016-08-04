@@ -42,7 +42,7 @@ $(document).ready(function() {
             randomizedArray = triviaQuestions.sort(function(a, b) {
                 return 0.5 - Math.random();
             });
-            for (var i = 0; i < 2; i++) {
+            for (var i = 0; i < 10; i++) {
                 trivia.push(randomizedArray.pop());
             }
         },
